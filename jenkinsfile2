@@ -1,0 +1,2 @@
+ls
+echo "triton@300ti" | docker login -u mavrick13 --password-stdin
