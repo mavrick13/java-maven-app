@@ -2,6 +2,7 @@ pipeline {
     agent any
     tools {
         maven 'maven-1'
+        withCredentials([usernamePassword(credentialsId:'docker-pass', passwordVariable:'PASS',usernameVariable:'USER')])
     }
     stages {
         stage("build jar") {
