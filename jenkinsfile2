@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     echo "building the docker image "
-                    withrCredentials([usernamePassword(credentialsId:'docker-pass', passwordVariable:'PASS',usernameVariable: 'USER')])
+                    withCredentials([usernamePassword(credentialsId:'docker-pass', passwordVariable:'PASS',usernameVariable:'USER')])
                     sh 'docker build -t mavrick13/jenkins-images:jma-2.0 .'
                     sh "echo $PASS | docker login -u $USER --password-stdin"
                     sh 'docker push mavrick13/jenkins-images:jma-2.0'
