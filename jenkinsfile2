@@ -19,10 +19,11 @@ pipeline {
                 script {
                     echo "building the docker image "
                     withCredentials([usernamePassword(credentialsId: 'docker-pass', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                        sh 'docker build -t mavrick13/jenkins-images:jma-2.0'
-                        sh "echo $PASS | docker login -u $USER --password-stdin"
-                        sh 'docker push mavrick13/jenkins-images:jma-2.0'
-
+                        sh 'start /B mvn package'
+                        sh 'start /B docker build -t mavrick13/jenkins-images:jma-2.0 .'
+                        sh "echo $PASS | start /B docker login -u $USER --password-stdin"
+                        sh 'start /B docker push mavrick13/jenkins-images:jma-2.0'
+                                    
                     }
                     
 
