@@ -1,12 +1,8 @@
-FROM golang:1.16.4-buster AS builder
+FROM openjdk:8-jre-alpine
 
-ARG VERSION=dev
+EXPOSE 8080
 
-WORKDIR /go/src/app
-COPY main.go .
-RUN go build -o main -ldflags=-X=main.version=${VERSION} main.go 
+COPY ./target/java-maven-app-*.jar /usr/app/
+WORKDIR /usr/app
 
-FROM debian:buster-slim
-COPY --from=builder /go/src/app/main /go/bin/main
-ENV PATH="/go/bin:${PATH}"
-CMD ["main"]
+CMD java -jar java-maven-app-*.jar
