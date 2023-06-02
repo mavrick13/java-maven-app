@@ -1,14 +1,11 @@
+# CICD_Java_gradle_application
 
+This application is java spring boot web application  
 
-# Build Instruction
+build tool is ** gradle **
 
+when we build the code using command ```./gradlew build ``` it will generate war file. that war can be placed in tomcat server to see application web page
 
-```
-mvn clean package
-and build the instruction .
-```
+code is integrated with sonarqube plugin which help us in static code analysis 
 
-# Deploy instruction
-
-Deploy ```target/WebApp.war``` on Tomcat properly for better experience.
-
+``` ./gradlew sonarqube ```
